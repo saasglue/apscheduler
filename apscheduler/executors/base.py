@@ -122,6 +122,8 @@ def run_job(job, jobstore_alias, run_times, logger_name):
 
         logger.info('Running job "%s" (scheduled at %s)', job, run_time)
         try:
+            job.kwargs['scheduled_time'] = run_time
+            job.kwargs['job_id'] = job.id
             retval = job.func(*job.args, **job.kwargs)
         except BaseException:
             exc, tb = sys.exc_info()[1:]

@@ -436,6 +436,8 @@ class BaseScheduler(six.with_metaclass(ABCMeta)):
         }
         job_kwargs = dict((key, value) for key, value in six.iteritems(job_kwargs) if
                           value is not undefined)
+        job_kwargs['scheduled_time'] = None
+        job_kwargs['job_id'] = None
         job = Job(self, **job_kwargs)
 
         # Don't really add jobs to job stores before the scheduler is up and running

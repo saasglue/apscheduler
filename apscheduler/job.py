@@ -225,6 +225,12 @@ class Job(object):
             approved['next_run_time'] = convert_to_datetime(value, self._scheduler.timezone,
                                                             'next_run_time')
 
+        if 'scheduled_time' in changes:
+            value = changes.pop('scheduled_time')
+
+        if 'job_id' in changes:
+            value = changes.pop('job_id')
+
         if changes:
             raise AttributeError('The following are not modifiable attributes of Job: %s' %
                                  ', '.join(changes))
