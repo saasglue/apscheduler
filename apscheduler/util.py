@@ -349,6 +349,10 @@ def check_callable_args(func, args, kwargs):
     unmatched_args = list(args)  # args that didn't match any of the parameters in the signature
     # kwargs that didn't match any of the parameters in the signature
     unmatched_kwargs = list(kwargs)
+    if not 'scheduled_time' in unmatched_kwargs:
+        unmatched_kwargs.append('scheduled_time')
+    if not 'job_id' in unmatched_kwargs:
+        unmatched_kwargs.append('job_id')
     # indicates if the signature defines *args and **kwargs respectively
     has_varargs = has_var_kwargs = False
 
